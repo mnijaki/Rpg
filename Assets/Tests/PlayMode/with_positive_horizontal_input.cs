@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -22,13 +23,13 @@ namespace Tests.PlayMode.a_player
 			// Wait so position of player GameObject will be set appropriate.
 			yield return null;
 
-			TestPlayerInput testPlayerInput = new TestPlayerInput();
+			IPlayerInput playerInput = Substitute.For<IPlayerInput>();
 			Player player = playerGameObject.AddComponent<Player>();
-			player.PlayerInput = testPlayerInput;
+			player.PlayerInput = playerInput;
 			float startingXPosition = player.transform.position.x;
 
 			// Act.
-			testPlayerInput.Horizontal = 5.0F;
+			playerInput.Horizontal.Returns(5.0F);
 
 			yield return new WaitForSeconds(2.0F);
 
@@ -36,12 +37,6 @@ namespace Tests.PlayMode.a_player
 
 			// Assert.
 			Assert.Greater(endingXPosition, startingXPosition);
-		}
-		
-		private class TestPlayerInput : IPlayerInput
-		{
-			public float Vertical { get; set; }
-			public float Horizontal { get; set; }
 		}
 	}
 }
