@@ -2,27 +2,43 @@
 
 public class Player : MonoBehaviour
 {
-    private CharacterController _characterController;
-    private PlayerInput _playerInput;
+	#region Public fields
 
-    private void Awake()
-    {
-        _characterController = GetComponent<CharacterController>();
-        _playerInput = new PlayerInput();
-    }
+	/// <summary>
+	///   Player input.
+	/// </summary>
+	public IPlayerInput PlayerInput { get; set; } = new PlayerInput();
 
-    private void Update()
-    {
-        Vector3 movementInput = new Vector3(0.0F, 0.0F, _playerInput.Vertical);
-        Vector3 movement = transform.rotation * movementInput;
-        _characterController.SimpleMove(movement);
-    }
-}
+	#endregion
+	
+	#region Protected and private fields
 
-public class PlayerInput
-{
-    public float Vertical
-    {
-        get { return Input.GetAxis("Vertical"); }
-    }
+	/// <summary>
+	///   Character controller.
+	/// </summary>
+	private CharacterController _characterController;
+
+	#endregion
+
+	#region Protected and private methods
+
+	/// <summary>
+	///   Awake.
+	/// </summary>
+	private void Awake()
+	{
+		_characterController = GetComponent<CharacterController>();
+	}
+
+	/// <summary>
+	///   Update.
+	/// </summary>
+	private void Update()
+	{
+		Vector3 movementInput = new Vector3(PlayerInput.Horizontal, 0.0F, PlayerInput.Vertical);
+		Vector3 movement = transform.rotation * movementInput;
+		_characterController.SimpleMove(movement);
+	}
+
+	#endregion
 }

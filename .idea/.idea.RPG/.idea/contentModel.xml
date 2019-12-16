@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Repos\GitHub\Rpg" t="IncludeRecursive">
-      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="IPlayerInput.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="PlayerInput.cs" t="Include" />
+          <e p="Scripts.asmdef" t="Include" />
         </e>
         <e p="Tests" t="Include">
           <e p="EditMode" t="Include">
@@ -15,6 +17,8 @@
           <e p="PlayMode" t="Include">
             <e p="a_moving_cube.cs" t="Include" />
             <e p="PlayModeTests.asmdef" t="Include" />
+            <e p="with_positive_horizontal_input.cs" t="Include" />
+            <e p="with_positive_vertical_input.cs" t="Include" />
           </e>
         </e>
       </e>
@@ -23,6 +27,7 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="PlayModeTests.csproj" t="IncludeRecursive" />
       <e p="RPG.sln" t="IncludeFlat" />
+      <e p="Scripts.csproj" t="IncludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
     <e p="C:\Users\Marek\.Rider2019.3\system\extResources" t="IncludeRecursive" />
