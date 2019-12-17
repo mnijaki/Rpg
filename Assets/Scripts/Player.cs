@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
 	///   Character controller.
 	/// </summary>
 	private CharacterController _characterController;
+	
+	/// <summary>
+	///   Mover.
+	/// </summary>
+	private IMover _mover;
 
 	#endregion
 
@@ -28,6 +33,7 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		_characterController = GetComponent<CharacterController>();
+		_mover = new Mover(this);
 	}
 
 	/// <summary>
@@ -35,9 +41,19 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void Update()
 	{
-		Vector3 movementInput = new Vector3(PlayerInput.Horizontal, 0.0F, PlayerInput.Vertical);
-		Vector3 movement = transform.rotation * movementInput;
-		_characterController.SimpleMove(movement);
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			_mover = new Mover(this);
+		}
+		else
+		{
+			if(Input.GetKeyDown(KeyCode.Alpha2))
+			{
+				_mover = new NavMeshMover(this);
+			}
+		}
+		
+		_mover.Tick();
 	}
 
 	#endregion

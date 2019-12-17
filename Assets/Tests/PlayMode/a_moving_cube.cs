@@ -21,7 +21,7 @@ namespace Tests.PlayMode
 			{
 				// Act.
 				cube.transform.position += Vector3.forward;
-				yield return new WaitForSeconds(1);
+				yield return new WaitForSeconds(0.2F);
 
 				// Assert.
 				Assert.AreEqual(i + 1, cube.transform.position.z);
