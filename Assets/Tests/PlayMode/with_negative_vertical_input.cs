@@ -11,8 +11,8 @@ namespace Tests.PlayMode.a_player
 		[UnityTest]
 		public IEnumerator moves_backwards()
 		{
-			Helpers.CreateFloor();
-			Player player = Helpers.CreatePlayer();
+			yield return Helpers.LoadMovementAndRotationTestsScene();
+			Player player = Helpers.GetPlayer();
 
 			// Wait so position of player GameObject will be set appropriate.
 			yield return null;

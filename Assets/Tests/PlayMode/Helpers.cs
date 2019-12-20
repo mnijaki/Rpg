@@ -1,7 +1,9 @@
+using System.Collections;
 using NSubstitute;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace Tests.PlayMode.a_player
 {
@@ -15,22 +17,22 @@ namespace Tests.PlayMode.a_player
 		
 		#region Public methods
 		
-		public static void CreateFloor()
+		public static IEnumerator LoadMovementAndRotationTestsScene()
 		{
-			GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			floor.transform.localScale = new Vector3(50.0F, 0.1F, 50.0F);
-			floor.transform.position = Vector3.zero;
+			AsyncOperation operation = SceneManager.LoadSceneAsync("MovementAndRotationTests");
+			while(operation.isDone == false)
+			{
+				yield return null;
+			}
 		}
 
-		public static Player CreatePlayer()
+		public static Player GetPlayer()
 		{
-			GameObject playerGameObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-			playerGameObject.AddComponent<CharacterController>();
-			playerGameObject.AddComponent<NavMeshAgent>();
-			playerGameObject.transform.position = new Vector3(0.0F, 5.0F, 0.0F);
+			Player player = Object.FindObjectOfType<Player>();
+			
+			Selection.activeGameObject = player.gameObject;
 			
 			IPlayerInput playerInput = Substitute.For<IPlayerInput>();
-			Player player = playerGameObject.AddComponent<Player>();
 			player.PlayerInput = playerInput;
 
 			return player;
