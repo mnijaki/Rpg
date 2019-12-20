@@ -11,4 +11,9 @@ public class PlayerInput : IPlayerInput
 	{
 		get { return Input.GetAxis("Horizontal"); }
 	}
+
+	public float MouseX
+	{
+		get { return Input.GetAxis("Mouse X"); }
+	}
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
@@ -6,10 +6,10 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode.a_player
 {
-	public class with_positive_horizontal_input
+	public class with_negative_horizontal_input
 	{
 		[UnityTest]
-		public IEnumerator moves_right()
+		public IEnumerator moves_left()
 		{
 			Helpers.CreateFloor();
 			Player player = Helpers.CreatePlayer();
@@ -17,13 +17,13 @@ namespace Tests.PlayMode.a_player
 			// Wait so position of player GameObject will be set appropriate.
 			yield return null;
 
-			player.PlayerInput.Horizontal.Returns(5.0F);
+			player.PlayerInput.Horizontal.Returns(-5.0F);
 			
 			float startXPosition = player.transform.position.x;
 			yield return new WaitForSeconds(2.0F);
 			float endXPosition = player.transform.position.x;
 			
-			Assert.Greater(endXPosition, startXPosition);
+			Assert.Less(endXPosition, startXPosition);
 		}
 	}
 }

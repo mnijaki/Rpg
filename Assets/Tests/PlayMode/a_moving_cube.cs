@@ -37,11 +37,10 @@ namespace Tests.PlayMode
 
 			// Act.
 			cube.transform.Rotate(Vector3.forward, 90);
+			yield return new WaitForSeconds(3.0F);
 
 			// Assert.
 			Assert.AreEqual(90, cube.transform.rotation.eulerAngles.z, 0.1F);
-
-			yield return null;
 		}
 	}
 }

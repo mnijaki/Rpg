@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
 	///   Mover.
 	/// </summary>
 	private IMover _mover;
+	
+	/// <summary>
+	///   Rotator.
+	/// </summary>
+	private Rotator _rotator;
 
 	#endregion
 
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
 	{
 		_characterController = GetComponent<CharacterController>();
 		_mover = new Mover(this);
+		_rotator = new Rotator(this);
 	}
 
 	/// <summary>
@@ -54,6 +60,7 @@ public class Player : MonoBehaviour
 		}
 		
 		_mover.Tick();
+		_rotator.Tick();
 	}
 
 	#endregion
