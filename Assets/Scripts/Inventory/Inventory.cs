@@ -3,6 +3,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+	#region Public fields
+	
+	/// <summary>
+	///   Currently active item.
+	/// </summary>
+	public Item ActiveItem { get; private set; }
+	
+	#endregion
+	
+	#region Serialized fields
+	
+	/// <summary>
+	///   Transform representing right hand position of player.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Transform representing right hand position of player")]
+	private Transform _rightHand;
+	
+	#endregion
+	
 	#region Protected and private fields
 	
 	/// <summary>
@@ -39,6 +59,13 @@ public class Inventory : MonoBehaviour
 	private void Equip(Item item)
 	{
 		Debug.Log($"Equipped item [{item.gameObject.name}]");
+		
+		Transform trans = item.transform;
+		trans.SetParent(_rightHand);
+		trans.localPosition = Vector3.zero;
+		trans.localRotation = Quaternion.identity;
+
+		ActiveItem = item;
 	}
 
 	#endregion
