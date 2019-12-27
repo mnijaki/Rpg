@@ -11,7 +11,7 @@ namespace Tests.PlayMode.a_player
 		[UnityTest]
 		public IEnumerator moves_right()
 		{
-			yield return Helpers.LoadMovementAndRotationTestsScene();
+			yield return Helpers.LoadPlayerTestsScene();
 			Player player = Helpers.GetPlayer();
 
 			// Wait so position of player GameObject will be set appropriate.

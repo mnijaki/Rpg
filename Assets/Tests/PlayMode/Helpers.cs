@@ -17,9 +17,9 @@ namespace Tests.PlayMode.a_player
 		
 		#region Public methods
 		
-		public static IEnumerator LoadMovementAndRotationTestsScene()
+		public static IEnumerator LoadPlayerTestsScene()
 		{
-			AsyncOperation operation = SceneManager.LoadSceneAsync("MovementAndRotationTests");
+			AsyncOperation operation = SceneManager.LoadSceneAsync("PlayerTests");
 			while(operation.isDone == false)
 			{
 				yield return null;

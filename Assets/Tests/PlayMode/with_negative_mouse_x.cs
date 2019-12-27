@@ -11,7 +11,7 @@ namespace Tests.PlayMode.a_player
 		[UnityTest]
 		public IEnumerator turns_left()
 		{
-			yield return Helpers.LoadMovementAndRotationTestsScene();
+			yield return Helpers.LoadPlayerTestsScene();
 			Player player = Helpers.GetPlayer();
 			
 			player.PlayerInput.MouseX.Returns(-1.0F);

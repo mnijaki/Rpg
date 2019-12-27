@@ -8,6 +8,8 @@
           <e p="Inventory" t="Include">
             <e p="Inventory.cs" t="Include" />
             <e p="Item.cs" t="Include" />
+            <e p="ItemComponent.cs" t="Include" />
+            <e p="ItemLogger.cs" t="Include" />
           </e>
           <e p="IPlayerInput.cs" t="Include" />
           <e p="Mover.cs" t="Include" />
@@ -25,6 +27,7 @@
           <e p="PlayMode" t="Include">
             <e p="a_moving_cube.cs" t="Include" />
             <e p="Helpers.cs" t="Include" />
+            <e p="moving_into_an_item.cs" t="Include" />
             <e p="PlayModeTests.asmdef" t="Include" />
             <e p="with_negative_horizontal_input.cs" t="Include" />
             <e p="with_negative_mouse_x.cs" t="Include" />
