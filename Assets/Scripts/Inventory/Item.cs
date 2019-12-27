@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 ///   Inventory item.
@@ -11,7 +12,7 @@ public class Item : MonoBehaviour
 	/// <summary>
 	///   Collection of actions that can be performed when item is used.
 	/// </summary>
-	public UseAction[] UseActions
+	public IEnumerable<UseAction> UseActions
 	{
 		get { return _useActions; }
 	}

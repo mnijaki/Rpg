@@ -35,6 +35,7 @@ public class InventoryUse : MonoBehaviour
 			return;
 		}
 
+		// MN:TO_DO: this is not optimized?
 		foreach(UseAction useAction in _inventory.ActiveItem.UseActions)
 		{
 			if((!CanCallAction(useAction.RaiseEvent)) || (!useAction.TargetComponent.CanBeUsed))

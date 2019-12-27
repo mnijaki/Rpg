@@ -22,7 +22,7 @@ public abstract class ItemComponent : MonoBehaviour
 	/// <summary>
 	///   Time, when item can be used again.
 	/// </summary>
-	private float _nextUseTime;
+	protected float _nextUseTime;
 
 	#endregion
 

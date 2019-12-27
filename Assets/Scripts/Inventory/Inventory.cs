@@ -39,6 +39,10 @@ public class Inventory : MonoBehaviour
 
 	#region Public methods
 	
+	/// <summary>
+	///   Pick up given item.
+	/// </summary>
+	/// <param name="item">Item to pick up</param>
 	public void Pickup(Item item)
 	{
 		_items.Add(item);
@@ -50,14 +54,22 @@ public class Inventory : MonoBehaviour
 	
 	#region Protected and private methods
 
+	/// <summary>
+	///   Awake.
+	/// </summary>
 	private void Awake()
 	{
 		_itemsRoot = new GameObject("Items").transform;
 		_itemsRoot.transform.SetParent(transform);
 	}
 	
+	/// <summary>
+	///   Equip given item.
+	/// </summary>
+	/// <param name="item">Item to equip</param>
 	private void Equip(Item item)
 	{
+		// MN:TO_DO:Delete this
 		Debug.Log($"Equipped item [{item.gameObject.name}]");
 		
 		Transform trans = item.transform;

@@ -12,17 +12,13 @@ public class Player : MonoBehaviour
 	#endregion
 	
 	#region Protected and private fields
-
-	/// <summary>
-	///   Character controller.
-	/// </summary>
-	private CharacterController _characterController;
 	
 	/// <summary>
 	///   Mover.
 	/// </summary>
 	private IMover _mover;
 	
+	// MN:TO_DO: Change to IRotator
 	/// <summary>
 	///   Rotator.
 	/// </summary>
@@ -37,7 +33,6 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void Awake()
 	{
-		_characterController = GetComponent<CharacterController>();
 		_mover = new Mover(this);
 		_rotator = new Rotator(this);
 	}
