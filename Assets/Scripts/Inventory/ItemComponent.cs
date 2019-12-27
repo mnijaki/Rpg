@@ -1,18 +1,24 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+///   Inventory item component (building element of inventory item). 
+/// </summary>
 public abstract class ItemComponent : MonoBehaviour
 {
-	#region Protected and private fields
+	#region Public fields
 
 	/// <summary>
 	///   Flag if item can be used.
 	/// </summary>
-	private bool CanUse
+	public bool CanBeUsed
 	{
 		get { return Time.time > _nextUseTime; }
 	}
+
+	#endregion
 	
+	#region Protected and private fields
+
 	/// <summary>
 	///   Time, when item can be used again.
 	/// </summary>
@@ -20,26 +26,12 @@ public abstract class ItemComponent : MonoBehaviour
 
 	#endregion
 
-	#region Protected and private methods
+	#region Public methods
 
 	/// <summary>
 	///   Use item.
 	/// </summary>
-	protected abstract void Use();
-
-	/// <summary>
-	///   Update (called once per frame).
-	/// </summary>
-	private void Update()
-	{
-		if((!CanUse) || (!Input.GetKeyDown(KeyCode.Space)))
-		{
-			return;
-		}
-		
-		Use();
-		_nextUseTime = Time.time + 1.0F;
-	}
+	public abstract void Use();
 
 	#endregion
 }

@@ -1,13 +1,16 @@
 using UnityEngine;
 
+/// <summary>
+///   Logger for inventory item.
+/// </summary>
 public class ItemLogger : ItemComponent
 {
-	#region Protected and private methods
+	#region Public methods
 	
 	/// <summary>
 	///   Use item.
 	/// </summary>
-	protected override void Use()
+	public override void Use()
 	{
 		Debug.Log("Item was used");
 	}
