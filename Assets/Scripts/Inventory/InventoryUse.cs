@@ -30,7 +30,15 @@ public class InventoryUse : MonoBehaviour
 	/// </summary>
 	private void Update()
 	{
-		if(_inventory.ActiveItem == null)
+		TryCallUseActionsOnActiveItem();
+	}
+
+	/// <summary>
+	///   Try call all possible use actions on currently active item. 
+	/// </summary>
+	private void TryCallUseActionsOnActiveItem()
+	{
+		if((_inventory.ActiveItem == null) || (_inventory.ActiveItem.UseActions == null))
 		{
 			return;
 		}
@@ -42,7 +50,7 @@ public class InventoryUse : MonoBehaviour
 			{
 				continue;
 			}
-			
+
 			useAction.TargetComponent.Use();
 		}
 	}

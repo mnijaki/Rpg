@@ -19,9 +19,9 @@ public class Mover : IMover
 	private readonly CharacterController _characterController;
 	
 	/// <summary>
-	///   Movement speed.
+	///   Movement sensitivity.
 	/// </summary>
-	private const float _MOVEMENT_SPEED = 5.0F;
+	private const float _MOVEMENT_SENSITIVITY = 5.0F;
 	
 	#endregion
 
@@ -45,7 +45,7 @@ public class Mover : IMover
 	public void Tick()
 	{
 		Vector3 movementInput = new Vector3(_player.PlayerInput.Horizontal, 0.0F, _player.PlayerInput.Vertical);
-		Vector3 movement = _player.transform.rotation * movementInput * _MOVEMENT_SPEED;
+		Vector3 movement = _player.transform.rotation * movementInput * _MOVEMENT_SENSITIVITY;
 		_characterController.SimpleMove(movement);
 	}
 	

@@ -23,10 +23,11 @@ public class Item : MonoBehaviour
 	
 	/// <summary>
 	///   Collection of actions that can be performed when item is used.
+	///   Automatically initialised, because it helps during tests.
 	/// </summary>
 	[SerializeField]
 	[Tooltip("Collection of actions that can be performed when item is used")]
-	private UseAction[] _useActions;
+	private UseAction[] _useActions = new UseAction[0];
 	
 	#endregion
 	

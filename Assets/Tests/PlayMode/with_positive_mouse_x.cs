@@ -14,6 +14,7 @@ namespace Tests.PlayMode.a_player
 			yield return Helpers.LoadPlayerTestsScene();
 			Player player = Helpers.GetPlayer();
 			
+			// MN:TO_DO: divide?
 			player.PlayerInput.MouseX.Returns(1.0F);
 			
 			Quaternion startRotation = player.transform.rotation;
@@ -21,13 +22,13 @@ namespace Tests.PlayMode.a_player
 			int currentAngle = 0;
 			while(currentAngle < MAX_ANGLE)
 			{
-				currentAngle++;
-				
 				yield return null;
 				
 				// This will return negative value if we have turned left and positive if we have turned right.
 				float turnAmount = Helpers.CalculateTurn(startRotation, player.transform.rotation);
 				Assert.Greater(turnAmount, 0.0F);
+				
+				currentAngle++;
 			}
 		}
 	}

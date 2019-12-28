@@ -10,9 +10,9 @@ public class Rotator
 	private readonly Player _player;
 	
 	/// <summary>
-	///   Rotation speed.
+	///   Rotation sensitivity.
 	/// </summary>
-	private const float _ROTATION_SPEED = 2.0F;
+	private const float _ROTATION_SENSITIVITY = 2.0F;
 	
 	#endregion
 	
@@ -32,7 +32,7 @@ public class Rotator
 	/// </summary>
 	public void Tick()
 	{
-		Vector3 rotation = new Vector3(0.0F, _player.PlayerInput.MouseX, 0.0F) * _ROTATION_SPEED;
+		Vector3 rotation = new Vector3(0.0F, _player.PlayerInput.MouseX * _ROTATION_SENSITIVITY, 0.0F) ;
 		_player.transform.Rotate(rotation);
 	}
 	
