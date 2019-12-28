@@ -63,6 +63,7 @@ MonoBehaviour:
   _useActions:
   - _raiseEvent: 0
     _targetComponent: {fileID: 1608569021445067189}
+  _crosshairType: 1
 --- !u!114 &1351546283
 MonoBehaviour:
   m_ObjectHideFlags: 0

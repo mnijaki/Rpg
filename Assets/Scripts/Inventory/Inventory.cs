@@ -1,8 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+	#region Events
+	
+	/// <summary>
+	///   Event - fired after active item was changed.
+	///   <para></para>
+	///   Item - new active item.
+	/// </summary>
+	public event Action<Item> ActiveItemChanged;
+	
+	#endregion
+	
 	#region Public fields
 	
 	/// <summary>
@@ -78,6 +90,7 @@ public class Inventory : MonoBehaviour
 		trans.localRotation = Quaternion.identity;
 
 		ActiveItem = item;
+		ActiveItemChanged?.Invoke(ActiveItem);
 	}
 
 	#endregion

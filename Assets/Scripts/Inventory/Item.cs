@@ -16,6 +16,14 @@ public class Item : MonoBehaviour
 	{
 		get { return _useActions; }
 	}
+
+	/// <summary>
+	///   Type of crosshair associated with this item. 
+	/// </summary>
+	public CrosshairType CrosshairType
+	{
+		get { return _crosshairType; }
+	}
 	
 	#endregion
 	
@@ -28,6 +36,13 @@ public class Item : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Collection of actions that can be performed when item is used")]
 	private UseAction[] _useActions = new UseAction[0];
+
+	/// <summary>
+	///   Type of crosshair associated with this item. 
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Type of crosshair associated with this item.")]
+	private CrosshairType _crosshairType;
 	
 	#endregion
 	
