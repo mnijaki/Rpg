@@ -60,10 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3f1e55215e62e41a1a170f56f00579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crosshairType: {fileID: 11400000, guid: b46f09180d9a37d4bb97bcba1e0b6af9, type: 2}
   _useActions:
   - _raiseEvent: 0
     _targetComponent: {fileID: 1608569021445067189}
-  _crosshairType: {fileID: 11400000, guid: b46f09180d9a37d4bb97bcba1e0b6af9, type: 2}
 --- !u!114 &1351546283
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,6 @@ using System.Collections;
 using NSubstitute;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace Tests.PlayMode.a_player
@@ -20,6 +19,21 @@ namespace Tests.PlayMode.a_player
 		public static IEnumerator LoadPlayerTestsScene()
 		{
 			AsyncOperation operation = SceneManager.LoadSceneAsync("PlayerTests");
+			while(operation.isDone == false)
+			{
+				yield return null;
+			}
+		}
+		
+		public static IEnumerator LoadPlayerItemTestsScene()
+		{
+			AsyncOperation operation = SceneManager.LoadSceneAsync("PlayerItemTests");
+			while(operation.isDone == false)
+			{
+				yield return null;
+			}
+			
+			operation = SceneManager.LoadSceneAsync("UI",LoadSceneMode.Additive);
 			while(operation.isDone == false)
 			{
 				yield return null;
