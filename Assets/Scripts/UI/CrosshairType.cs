@@ -1,8 +1,31 @@
+using UnityEngine;
+
 /// <summary>
-///   Enumeration of crosshair types.
+///   Crosshair type.
 /// </summary>
-public enum CrosshairType
+[CreateAssetMenu(menuName = "Crosshair type", fileName = "CrosshairType")]
+public class CrosshairType : ScriptableObject
 {
-	Invalid, // No valid target or targeted object/path is not allowed to use.
-	Gun
+	#region Public fields
+	
+	/// <summary>
+	///   Sprite representing crosshair.
+	/// </summary>
+	public Sprite Sprite
+	{
+		get { return _sprite; }
+	}
+	
+	#endregion
+	
+	#region Serialized fields
+
+	/// <summary>
+	///   Sprite representing crosshair.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Sprite representing crosshair")]
+	private Sprite _sprite;
+
+	#endregion
 }

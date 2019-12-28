@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -16,11 +15,12 @@ public class Crosshair : MonoBehaviour
 	[Tooltip("Image component responsible for displaying crosshair sprite")]
 	private Image _crosshairImage;
 	
+	/// <summary>
+	///   Crosshair type representing invalid target over crosshair or no active weapon. 
+	/// </summary>
 	[SerializeField]
-	private Sprite _gunSprite;
-	
-	[SerializeField]
-	private Sprite _invalidSprite;
+	[Tooltip("Crosshair type representing invalid target over crosshair or no active weapon")]
+	private CrosshairType _crosshairTypeInvalid;
 
 	#endregion
 
@@ -49,7 +49,7 @@ public class Crosshair : MonoBehaviour
 		}
 		else
 		{
-			_crosshairImage.sprite = _invalidSprite;
+			_crosshairImage.sprite = _crosshairTypeInvalid.Sprite;
 		}
 	}
 
@@ -71,21 +71,15 @@ public class Crosshair : MonoBehaviour
 	/// <param name="newActiveItem">New active item.</param>
 	private void InventoryOnActiveItemChanged(Item newActiveItem)
 	{
-		switch(newActiveItem.CrosshairType)
+		if((newActiveItem != null) && (newActiveItem.CrosshairType != null))
 		{
-			case CrosshairType.Gun:
-			{
-				_crosshairImage.sprite = _gunSprite;
-				break;
-			}
-			case CrosshairType.Invalid:
-			{
-				_crosshairImage.sprite = _invalidSprite;
-				break;
-			}
+			_crosshairImage.sprite = newActiveItem.CrosshairType.Sprite;
+			Debug.Log($"Crosshair detected new item [{newActiveItem.CrosshairType}]");
 		}
-		
-		Debug.Log($"Crosshair detected new item [{newActiveItem.CrosshairType}]");
+		else
+		{
+			_crosshairImage.sprite = _crosshairTypeInvalid.Sprite;
+		}
 	}
 
 	#endregion
