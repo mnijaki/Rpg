@@ -9,11 +9,16 @@ public class Slot : MonoBehaviour
 	#region Public fields
 
 	/// <summary>
+	///   Item in the slot.
+	/// </summary>
+	public Item Item { get; private set; }
+	
+	/// <summary>
 	///   Flag if slot is empty.
 	/// </summary>
 	public bool IsEmpty
 	{
-		get { return _item == null; }
+		get { return Item == null; }
 	}
 
 	#endregion
@@ -28,15 +33,6 @@ public class Slot : MonoBehaviour
 	private Image _icon;
 	
 	#endregion
-	
-	#region Protected and private fields
-	
-	/// <summary>
-	///   Item in the slot.
-	/// </summary>
-	private Item _item;
-
-	#endregion
 
 	#region Public methods
 	
@@ -46,7 +42,7 @@ public class Slot : MonoBehaviour
 	/// <param name="item">Item to set in the slot</param>
 	public void SetItem(Item item)
 	{
-		_item = item;
+		Item = item;
 		_icon.sprite = item.Icon;
 	}
 	

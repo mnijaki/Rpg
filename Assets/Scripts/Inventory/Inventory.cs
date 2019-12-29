@@ -70,6 +70,24 @@ public class Inventory : MonoBehaviour
 		
 		Equip(item);
 	}
+	
+	/// <summary>
+	///   Equip given item.
+	/// </summary>
+	/// <param name="item">Item to equip</param>
+	public void Equip(Item item)
+	{
+		// MN:TO_DO:Delete this
+		Debug.Log($"Equipped item [{item.gameObject.name}]");
+		
+		Transform trans = item.transform;
+		trans.SetParent(_rightHand);
+		trans.localPosition = Vector3.zero;
+		trans.localRotation = Quaternion.identity;
+
+		ActiveItem = item;
+		ActiveItemChanged?.Invoke(ActiveItem);
+	}
 
 	#endregion
 	
@@ -82,24 +100,6 @@ public class Inventory : MonoBehaviour
 	{
 		_itemsRoot = new GameObject("Items").transform;
 		_itemsRoot.transform.SetParent(transform);
-	}
-	
-	/// <summary>
-	///   Equip given item.
-	/// </summary>
-	/// <param name="item">Item to equip</param>
-	private void Equip(Item item)
-	{
-		// MN:TO_DO:Delete this
-		Debug.Log($"Equipped item [{item.gameObject.name}]");
-		
-		Transform trans = item.transform;
-		trans.SetParent(_rightHand);
-		trans.localPosition = Vector3.zero;
-		trans.localRotation = Quaternion.identity;
-
-		ActiveItem = item;
-		ActiveItemChanged?.Invoke(ActiveItem);
 	}
 
 	#endregion

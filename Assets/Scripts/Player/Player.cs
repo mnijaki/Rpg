@@ -36,27 +36,43 @@ public class Player : MonoBehaviour
 		_mover = new Mover(this);
 		_rotator = new Rotator(this);
 	}
+	
+	/// <summary>
+	///   On enable.
+	/// </summary>
+	private void OnEnable()
+	{
+		PlayerInput.MovementModeKeyPressed += PlayerInputOnMovementModeKeyPressed;
+	}
 
 	/// <summary>
 	///   Update.
 	/// </summary>
 	private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			_mover = new Mover(this);
-		}
-		else
-		{
-			if(Input.GetKeyDown(KeyCode.Alpha2))
-			{
-				_mover = new NavMeshMover(this);
-			}
-		}
-		
+		PlayerInput.Tick();
 		_mover.Tick();
 		_rotator.Tick();
 	}
 
+	#endregion
+	
+	#region Events handlers
+	
+	/// <summary>
+	///   Event - fired after movement mode key was pressed.
+	/// </summary>
+	private void PlayerInputOnMovementModeKeyPressed()
+	{
+		if(_mover.GetType() == typeof(Mover))
+		{
+			_mover = new NavMeshMover(this);
+		}
+		else
+		{
+			_mover = new Mover(this);
+		}
+	}
+	
 	#endregion
 }

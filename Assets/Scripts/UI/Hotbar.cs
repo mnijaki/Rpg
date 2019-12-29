@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 ///   UI hotbar with slots.
@@ -9,14 +8,19 @@ public class Hotbar : MonoBehaviour
 	#region Protected and private fields
 	
 	/// <summary>
-	///   Player inventory..
+	///   Player.
+	/// </summary>
+	private Player _player;
+	
+	/// <summary>
+	///   Player inventory.
 	/// </summary>
 	private Inventory _inventory;
 	
 	/// <summary>
 	///   Collection of slots.
 	/// </summary>
-	private IEnumerable<Slot> _slots;
+	private Slot[] _slots;
 
 	#endregion
 
@@ -27,6 +31,8 @@ public class Hotbar : MonoBehaviour
 	/// </summary>
 	private void OnEnable()
 	{
+		_player = FindObjectOfType<Player>();
+		_player.PlayerInput.AlphaKeyPressed += PlayerInputOnAlphaKeyPressed;
 		_inventory = FindObjectOfType<Inventory>();
 		_inventory.ItemPickedUp += InventoryOnItemPickedUp;
 		_slots = GetComponentsInChildren<Slot>();
@@ -52,9 +58,26 @@ public class Hotbar : MonoBehaviour
 	#endregion
 	
 	#region Events handlers
+	
+	/// <summary>
+	///   Event - fired after Alpha key was pressed.
+	/// </summary>
+	/// <param name="index">Index of pressed Alpha key (0 - Alpha1, 1 - Alpha2, 2 - Alpha3...)</param>
+	private void PlayerInputOnAlphaKeyPressed(int index)
+	{
+		if((index < 0) || (index >= _slots.Length))
+		{
+			return;
+		}
+		
+		if(_slots[index].IsEmpty == false)
+		{
+			_inventory.Equip(_slots[index].Item);
+		}
+	}
 
 	/// <summary>
-	///  Event - fired when item was picked up to inventory. 
+	///   Event - fired when item was picked up to inventory. 
 	/// </summary>
 	/// <param name="pickedUpItem">Picked up item</param>
 	private void InventoryOnItemPickedUp(Item pickedUpItem)
