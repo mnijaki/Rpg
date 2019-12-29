@@ -44,6 +44,14 @@ public class Player : MonoBehaviour
 	{
 		PlayerInput.MovementModeKeyPressed += PlayerInputOnMovementModeKeyPressed;
 	}
+	
+	/// <summary>
+	///   On disable.
+	/// </summary>
+	private void OnDisable()
+	{
+		PlayerInput.MovementModeKeyPressed -= PlayerInputOnMovementModeKeyPressed;
+	}
 
 	/// <summary>
 	///   Update.
@@ -64,7 +72,7 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void PlayerInputOnMovementModeKeyPressed()
 	{
-		if(_mover.GetType() == typeof(Mover))
+		if(_mover is Mover)
 		{
 			_mover = new NavMeshMover(this);
 		}

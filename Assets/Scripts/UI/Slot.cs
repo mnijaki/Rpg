@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +33,13 @@ public class Slot : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Slot icon")]
 	private Image _icon;
+
+	/// <summary>
+	///   Text displayed in the slot.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Text displayed in the slot.")]
+	private TMP_Text _text;
 	
 	#endregion
 
@@ -46,5 +55,22 @@ public class Slot : MonoBehaviour
 		_icon.sprite = item.Icon;
 	}
 	
+	#endregion
+	
+	#region Protected and private methods
+
+	/// <summary>
+	///   On validate.
+	/// </summary>
+	private void OnValidate()
+	{
+		_text = GetComponentInChildren<TMP_Text>();
+		
+		int keyNumber = transform.GetSiblingIndex() + 1;
+		_text.SetText(keyNumber.ToString());
+
+		gameObject.name = "Slot " + keyNumber;
+	}
+
 	#endregion
 }

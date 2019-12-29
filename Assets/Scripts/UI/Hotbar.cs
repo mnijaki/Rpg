@@ -39,6 +39,15 @@ public class Hotbar : MonoBehaviour
 	}
 
 	/// <summary>
+	///   On disable.
+	/// </summary>
+	private void OnDisable()
+	{
+		_player.PlayerInput.AlphaKeyPressed -= PlayerInputOnAlphaKeyPressed;
+		_inventory.ItemPickedUp -= InventoryOnItemPickedUp;
+	}
+
+	/// <summary>
 	///   Find first free slot in hotbar.
 	/// </summary>
 	/// <returns>First free slot</returns>
