@@ -32,23 +32,6 @@ public class Hotbar : MonoBehaviour
 		_slots = GetComponentsInChildren<Slot>();
 	}
 
-	#endregion
-	
-	#region Events handlers
-
-	/// <summary>
-	///  Event - fired when item was picked up to inventory. 
-	/// </summary>
-	/// <param name="pickedUpItem">Picked up item</param>
-	private void InventoryOnItemPickedUp(Item pickedUpItem)
-	{
-		Slot slot = FindFirstFreeSlot();
-		if(slot != null)
-		{
-			slot.SetItem(pickedUpItem);
-		}
-	}
-
 	/// <summary>
 	///   Find first free slot in hotbar.
 	/// </summary>
@@ -64,6 +47,23 @@ public class Hotbar : MonoBehaviour
 		}
 
 		return null;
+	}
+
+	#endregion
+	
+	#region Events handlers
+
+	/// <summary>
+	///  Event - fired when item was picked up to inventory. 
+	/// </summary>
+	/// <param name="pickedUpItem">Picked up item</param>
+	private void InventoryOnItemPickedUp(Item pickedUpItem)
+	{
+		Slot slot = FindFirstFreeSlot();
+		if(slot != null)
+		{
+			slot.SetItem(pickedUpItem);
+		}
 	}
 
 	#endregion
