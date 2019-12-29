@@ -95,8 +95,13 @@ public class Item : MonoBehaviour
 
 	private void OnValidate()
 	{
-		// Force collider on item to be 'Trigger' collider.
-		GetComponent<Collider>().isTrigger = true;
+		Collider col = GetComponent<Collider>();
+		// Check is added because Unity had problem with going into loop with this validation and constantly changes trigger to 'True'.
+		if(col.isTrigger == false)
+		{
+			// Force collider on item to be 'Trigger' collider.
+			col.isTrigger = true;
+		}
 	}
 
 	#endregion

@@ -23,16 +23,24 @@ public class Slot : MonoBehaviour
 		get { return Item == null; }
 	}
 
+	/// <summary>
+	///   Slot icon image.
+	/// </summary>
+	public Image IconImage
+	{
+		get { return _iconImage; }
+	}
+
 	#endregion
 	
 	#region Serialized fields
 	
 	/// <summary>
-	///   Slot icon.
+	///   Slot icon image.
 	/// </summary>
 	[SerializeField]
-	[Tooltip("Slot icon")]
-	private Image _icon;
+	[Tooltip("Slot icon image")]
+	private Image _iconImage;
 
 	/// <summary>
 	///   Text displayed in the slot.
@@ -52,7 +60,7 @@ public class Slot : MonoBehaviour
 	public void SetItem(Item item)
 	{
 		Item = item;
-		_icon.sprite = item.Icon;
+		_iconImage.sprite = item.Icon;
 	}
 	
 	#endregion
@@ -64,6 +72,7 @@ public class Slot : MonoBehaviour
 	/// </summary>
 	private void OnValidate()
 	{
+		_iconImage = GetComponentsInChildren<Image>()[1];
 		_text = GetComponentInChildren<TMP_Text>();
 		
 		int keyNumber = transform.GetSiblingIndex() + 1;
