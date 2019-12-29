@@ -8,14 +8,6 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 	#region Public fields
-	
-	/// <summary>
-	///   Collection of actions that can be performed when item is used.
-	/// </summary>
-	public IEnumerable<UseAction> UseActions
-	{
-		get { return _useActions; }
-	}
 
 	/// <summary>
 	///   Type of crosshair associated with this item. 
@@ -25,6 +17,22 @@ public class Item : MonoBehaviour
 		get { return _crosshairType; }
 	}
 	
+	/// <summary>
+	///   Icon representing item.
+	/// </summary>
+	public Sprite Icon
+	{
+		get { return _icon; }
+	}
+	
+	/// <summary>
+	///   Collection of actions that can be performed when item is used.
+	/// </summary>
+	public IEnumerable<UseAction> UseActions
+	{
+		get { return _useActions; }
+	}
+
 	#endregion
 	
 	#region Serialized fields
@@ -35,6 +43,13 @@ public class Item : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Type of crosshair associated with this item.")]
 	private CrosshairType _crosshairType;
+
+	/// <summary>
+	///   Icon representing item.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Icon representing item")]
+	private Sprite _icon;
 	
 	/// <summary>
 	///   Collection of actions that can be performed when item is used.

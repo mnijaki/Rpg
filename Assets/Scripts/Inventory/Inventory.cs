@@ -12,6 +12,13 @@ public class Inventory : MonoBehaviour
 	///   Item - new active item.
 	/// </summary>
 	public event Action<Item> ActiveItemChanged;
+
+	/// <summary>
+	///   Event - fired after item was picked up.
+	///   <para></para>
+	///   Item - item that was picked up.
+	/// </summary>
+	public event Action<Item> ItemPickedUp;
 	
 	#endregion
 	
@@ -21,7 +28,7 @@ public class Inventory : MonoBehaviour
 	///   Currently active item.
 	/// </summary>
 	public Item ActiveItem { get; private set; }
-	
+
 	#endregion
 	
 	#region Serialized fields
@@ -59,6 +66,8 @@ public class Inventory : MonoBehaviour
 	{
 		_items.Add(item);
 		item.transform.SetParent(_itemsRoot);
+		ItemPickedUp?.Invoke(item);
+		
 		Equip(item);
 	}
 
