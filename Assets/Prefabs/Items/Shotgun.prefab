@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delay: 0.1
   _range: 10
+  _damage: 1
 --- !u!1001 &1818941566213590238
 PrefabInstance:
   m_ObjectHideFlags: 0

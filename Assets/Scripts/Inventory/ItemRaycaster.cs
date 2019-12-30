@@ -20,6 +20,14 @@ public class ItemRaycaster : ItemComponent
 	[Tooltip("Raycast range")]
 	private float _range = 10.0F;
 	
+	/// <summary>
+	///   Amount of damage applied to raycasted entity.   
+	/// </summary>
+	[SerializeField]
+	[Range(0,1000)]
+	[Tooltip("Amount of damage applied to raycasted entity")]
+	private int _damage = 1;
+	
 	#endregion
 	
 	#region Protected and private fields
@@ -70,10 +78,21 @@ public class ItemRaycaster : ItemComponent
 		{
 			return;
 		}
+		
+		DealDamage(nearest);
+	}
 
-		Transform hitCubeTrans = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-		hitCubeTrans.localScale = new Vector3(0.1F, 0.1F, 0.1F);
-		hitCubeTrans.position = nearest.point;
+	#endregion
+	
+	#region Protected and private methods
+
+	/// <summary>
+	///   Awake.
+	/// </summary>
+	private void Awake()
+	{
+		// MN:TO_DO: layer mask cannot can be obtained only during initialization of object or by serialization.
+		_layerMask = LayerMask.GetMask("Default");
 	}
 
 	/// <summary>
@@ -84,7 +103,6 @@ public class ItemRaycaster : ItemComponent
 	{
 		RaycastHit nearest = _emptyHit;
 		double nearestDistance = double.MaxValue;
-
 		for(int i = 0; i < _hits; i++)
 		{
 			float distance = Vector3.Distance(transform.position, _results[i].point);
@@ -99,18 +117,15 @@ public class ItemRaycaster : ItemComponent
 		
 		return nearest;
 	}
-
-	#endregion
 	
-	#region Protected and private methods
-
 	/// <summary>
-	///   Awake.
+	///   Deal damage to damage taker from hit object. 
 	/// </summary>
-	private void Awake()
+	/// <param name="hitObject">Object that was hit by raycast</param>
+	private void DealDamage(RaycastHit hitObject)
 	{
-		// MN:TO_DO: layer mask cannot can be obtained only during initialization of object or by serialization.
-		_layerMask = LayerMask.GetMask("Default");
+		IDamageTaker damageTaker = hitObject.collider.GetComponent<IDamageTaker>();
+		damageTaker?.TakeDamage(_damage);
 	}
 
 	#endregion
