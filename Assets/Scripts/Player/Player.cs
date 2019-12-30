@@ -8,22 +8,35 @@ public class Player : MonoBehaviour
 	///   Player input.
 	/// </summary>
 	public IPlayerInput PlayerInput { get; set; } = new PlayerInput();
-
-	#endregion
-	
-	#region Protected and private fields
 	
 	/// <summary>
 	///   Mover.
 	/// </summary>
-	private IMover _mover;
+	public IMover Mover { get; private set; }
 	
-	// MN:TO_DO: Change to IRotator
 	/// <summary>
 	///   Rotator.
 	/// </summary>
-	private Rotator _rotator;
+	public IRotator Rotator { get; private set; }
 
+	#endregion
+	
+	#region Serialized fields
+
+	/// <summary>
+	///   Type of mover.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Type of mover")]
+	private MoverType _moverType;
+	
+	/// <summary>
+	///   Type of rotator.
+	/// </summary>
+	[SerializeField]
+	[Tooltip("Type of rotator")]
+	private RotatorType _rotatorType;
+	
 	#endregion
 
 	#region Protected and private methods
@@ -33,8 +46,8 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void Awake()
 	{
-		_mover = new Mover(this);
-		_rotator = new Rotator(this);
+		Mover = new Mover(this, _moverType);
+		Rotator = new Rotator(this, _rotatorType);
 	}
 	
 	/// <summary>
@@ -59,8 +72,8 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		PlayerInput.Tick();
-		_mover.Tick();
-		_rotator.Tick();
+		Mover.Tick();
+		Rotator.Tick();
 	}
 
 	#endregion
@@ -72,13 +85,13 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void PlayerInputOnMovementModeKeyPressed()
 	{
-		if(_mover is Mover)
+		if(Mover is Mover)
 		{
-			_mover = new NavMeshMover(this);
+			Mover = new NavMeshMover(this, _moverType);
 		}
 		else
 		{
-			_mover = new Mover(this);
+			Mover = new Mover(this, _moverType);
 		}
 	}
 	

@@ -14,8 +14,7 @@ namespace Tests.PlayMode.a_player
 			yield return Helpers.LoadPlayerTestsScene();
 			Player player = Helpers.GetPlayer();
 			
-			// MN:TO_DO: divide?
-			player.PlayerInput.MouseX.Returns(-1.0F);
+			player.PlayerInput.MouseX.Returns(-1.0F / player.Rotator.RotatorType.Sensitivity);
 			
 			Quaternion startRotation = player.transform.rotation;
 			const int MAX_ANGLE = 180;

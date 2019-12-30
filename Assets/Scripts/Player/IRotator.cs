@@ -1,14 +1,14 @@
 /// <summary>
-///   Mover interface.
+///   Rotator interface.
 /// </summary>
-public interface IMover
+public interface IRotator
 {
 	#region Public fields
 	
 	/// <summary>
-	///   Type of mover.
+	///   Type of rotator.
 	/// </summary>
-	MoverType MoverType { get; }
+	RotatorType RotatorType { get; }
 	
 	#endregion
 	

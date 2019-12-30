@@ -1,7 +1,16 @@
 using UnityEngine;
 
-public class Rotator
+public class Rotator : IRotator
 {
+	#region Public fields
+	
+	/// <summary>
+	///   Type of rotator.
+	/// </summary>
+	public RotatorType RotatorType { get; }
+	
+	#endregion
+	
 	#region Protected and private fields
 	
 	/// <summary>
@@ -9,30 +18,27 @@ public class Rotator
 	/// </summary>
 	private readonly Player _player;
 	
-	/// <summary>
-	///   Rotation sensitivity.
-	/// </summary>
-	private const float _ROTATION_SENSITIVITY = 2.0F;
-	
 	#endregion
 	
 	#region Public mentods
-	
+
 	/// <summary>
 	///   Constructor.
 	/// </summary>
 	/// <param name="player">Player to rotate</param>
-	public Rotator(Player player)
+	/// <param name="rotatorType">Type of rotator</param>
+	public Rotator(Player player, RotatorType rotatorType)
 	{
 		_player = player;
+		RotatorType = rotatorType;
 	}
 	
 	/// <summary>
-	///   Tick.
+	///   Tick (called once per update frame).
 	/// </summary>
 	public void Tick()
 	{
-		Vector3 rotation = new Vector3(0.0F, _player.PlayerInput.MouseX * _ROTATION_SENSITIVITY, 0.0F) ;
+		Vector3 rotation = new Vector3(0.0F, _player.PlayerInput.MouseX * RotatorType.Sensitivity, 0.0F) ;
 		_player.transform.Rotate(rotation);
 	}
 	

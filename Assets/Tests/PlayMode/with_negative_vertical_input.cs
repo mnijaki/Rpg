@@ -17,8 +17,7 @@ namespace Tests.PlayMode.a_player
 			// Wait so position of player GameObject will be set appropriate.
 			yield return null;
 
-			// MN:TO_DO: divide?
-			player.PlayerInput.Vertical.Returns(-5.0F);
+			player.PlayerInput.Vertical.Returns(-5.0F / player.Mover.MoverType.Sensitivity);
 			
 			float startZPosition = player.transform.position.z;
 			yield return new WaitForSeconds(2.0F);

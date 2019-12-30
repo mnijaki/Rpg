@@ -6,6 +6,15 @@ using UnityEngine.AI;
 /// </summary>
 public class NavMeshMover : IMover
 {
+	#region Public fields
+	
+	/// <summary>
+	///   Type of mover.
+	/// </summary>
+	public MoverType MoverType { get; }
+	
+	#endregion
+	
 	#region Protected and private fields
 	
 	/// <summary>
@@ -26,16 +35,18 @@ public class NavMeshMover : IMover
 	///   Constructor.
 	/// </summary>
 	/// <param name="player">Player to move</param>
-	public NavMeshMover(Player player)
+	/// <param name="moverType">Type of mover</param>
+	public NavMeshMover(Player player, MoverType moverType)
 	{
 		_player = player;
+		MoverType = moverType;
 		
 		_navMeshAgent = _player.GetComponent<NavMeshAgent>();
 		_navMeshAgent.enabled = true;
 	}
 	
 	/// <summary>
-	///   Tick.
+	///   Tick (called once per update frame).
 	/// </summary>
 	public void Tick()
 	{
