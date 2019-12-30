@@ -1,10 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 ///   Entity.
 /// </summary>
 public class Entity : MonoBehaviour, IDamageTaker
 {
+	#region Events
+
+	/// <summary>
+	///   Event - fired after entity died.
+	/// </summary>
+	public event Action Died;
+	
+	#endregion
+	
 	#region Public fields
 
 	/// <summary>
@@ -63,6 +73,7 @@ public class Entity : MonoBehaviour, IDamageTaker
 	private void Die()
 	{
 		Debug.Log($"Entity [{gameObject.name}] died");
+		Died?.Invoke();
 	}
 	
 	/// <summary>
