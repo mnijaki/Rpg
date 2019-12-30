@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+///   Rotator of player.
+/// </summary>
 public class Rotator : IRotator
 {
 	#region Public fields

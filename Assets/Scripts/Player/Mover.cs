@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-///   Mover of object.
+///   Mover of player.
 /// </summary>
 public class Mover : IMover
 {

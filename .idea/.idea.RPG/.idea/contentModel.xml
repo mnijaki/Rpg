@@ -23,18 +23,18 @@
             <e p="IPlayerInput.cs" t="Include" />
             <e p="IRotator.cs" t="Include" />
             <e p="Mover.cs" t="Include" />
+            <e p="MoverType.cs" t="Include" />
             <e p="NavMeshMover.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
             <e p="Rotator.cs" t="Include" />
+            <e p="RotatorType.cs" t="Include" />
           </e>
           <e p="Scripts.asmdef" t="Include" />
           <e p="UI" t="Include">
             <e p="Crosshair.cs" t="Include" />
             <e p="CrosshairType.cs" t="Include" />
             <e p="Hotbar.cs" t="Include" />
-            <e p="MoverType.cs" t="Include" />
-            <e p="RotatorType.cs" t="Include" />
             <e p="Slot.cs" t="Include" />
           </e>
         </e>
