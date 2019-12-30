@@ -12,6 +12,7 @@
             <e p="InventoryUse.cs" t="Include" />
             <e p="Item.cs" t="Include" />
             <e p="ItemComponent.cs" t="Include" />
+            <e p="ItemEditor.cs" t="Include" />
             <e p="ItemLogger.cs" t="Include" />
             <e p="ItemRaycaster.cs" t="Include" />
             <e p="RaiseEvent.cs" t="Include" />
