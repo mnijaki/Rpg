@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests.PlayMode
+namespace N_Tests.N_PlayMode.N_example_tests
 {
 	public class a_moving_cube
 	{

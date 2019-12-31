@@ -1,10 +1,11 @@
 using System.Collections;
+using N_RPG.N_Player;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests.PlayMode.a_player
+namespace N_Tests.N_PlayMode.N_a_player
 {
 	public class with_negative_vertical_input
 	{

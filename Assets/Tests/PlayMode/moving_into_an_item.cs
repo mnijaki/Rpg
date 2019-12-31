@@ -1,11 +1,16 @@
 using System.Collections;
+using N_RPG.N_Player;
+using N_RPG.N_Player.N_Inventory;
+using N_RPG.N_Player.N_Inventory.N_Item;
+using N_RPG.N_UI.N_Crosshair;
+using N_RPG.N_UI.N_Hotbar;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
-namespace Tests.PlayMode.a_player
+namespace N_Tests.N_PlayMode.N_a_player
 {
 	public class moving_into_an_item
 	{

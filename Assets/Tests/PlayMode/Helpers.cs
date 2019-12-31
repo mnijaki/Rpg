@@ -1,10 +1,12 @@
 using System.Collections;
+using N_RPG.N_Player;
+using N_RPG.N_Player.N_Inputs;
 using NSubstitute;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Tests.PlayMode.a_player
+namespace N_Tests.N_PlayMode.N_a_player
 {
 	public static class Helpers
 	{
