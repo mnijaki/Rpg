@@ -37,7 +37,7 @@ public class Rotator : IRotator
 	}
 	
 	/// <summary>
-	///   Tick (called once per update frame).
+	///   Tick.
 	/// </summary>
 	public void Tick()
 	{

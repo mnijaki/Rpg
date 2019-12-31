@@ -53,7 +53,7 @@ public class PlayerInput : IPlayerInput
 	#region Public methods
 
 	/// <summary>
-	///   Tick (called once per Update frame).
+	///   Tick.
 	/// </summary>
 	public void Tick()
 	{

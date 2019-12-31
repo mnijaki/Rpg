@@ -46,7 +46,7 @@ public class NavMeshMover : IMover
 	}
 	
 	/// <summary>
-	///   Tick (called once per update frame).
+	///   Tick.
 	/// </summary>
 	public void Tick()
 	{

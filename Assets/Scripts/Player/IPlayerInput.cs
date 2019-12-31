@@ -43,7 +43,7 @@ public interface IPlayerInput
 	#region Public methods
 
 	/// <summary>
-	///   Tick (called once per Update frame).
+	///   Tick.
 	/// </summary>
 	void Tick();
 

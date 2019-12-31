@@ -15,7 +15,7 @@ public interface IRotator
 	#region Public methods
 	
 	/// <summary>
-	///   Tick (called once per update frame).
+	///   Tick.
 	/// </summary>
 	void Tick();
 	

@@ -36,6 +36,22 @@
             <e p="RotatorType.cs" t="Include" />
           </e>
           <e p="Scripts.asmdef" t="Include" />
+          <e p="StateMachine" t="Include">
+            <e p="Data" t="Include">
+              <e p="IState.cs" t="Include" />
+            </e>
+            <e p="Entity" t="Include">
+              <e p="Data" t="Include">
+                <e p="EntityAttack.cs" t="Include" />
+                <e p="EntityChasePlayer.cs" t="Include" />
+                <e p="EntityIdle.cs" t="Include" />
+              </e>
+              <e p="EntityStateMachine.cs" t="Include" />
+            </e>
+            <e p="Tools" t="Include">
+              <e p="StateMachineController.cs" t="Include" />
+            </e>
+          </e>
           <e p="UI" t="Include">
             <e p="Crosshair.cs" t="Include" />
             <e p="CrosshairType.cs" t="Include" />
