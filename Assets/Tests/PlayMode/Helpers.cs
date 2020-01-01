@@ -42,6 +42,15 @@ namespace N_Tests.N_PlayMode.N_a_player
 			}
 		}
 
+		public static IEnumerator LoadEntityStateMachineTestsScene()
+		{
+			AsyncOperation operation = SceneManager.LoadSceneAsync("EntityStateMachineTests");
+			while(operation.isDone == false)
+			{
+				yield return null;
+			}
+		}
+
 		public static Player GetPlayer()
 		{
 			Player player = Object.FindObjectOfType<Player>();

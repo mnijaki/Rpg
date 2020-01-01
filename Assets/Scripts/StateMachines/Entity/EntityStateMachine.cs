@@ -1,3 +1,4 @@
+using System;
 using N_RPG.N_Player;
 using N_RPG.N_StateMachines.N_Entity.N_Data;
 using N_RPG.N_StateMachines.N_Tools;
@@ -11,6 +12,18 @@ namespace N_RPG.N_StateMachines.N_Entity
 	/// </summary>
 	public class EntityStateMachine : MonoBehaviour
 	{
+		#region Public fields
+
+		/// <summary>
+		///   Current state type.
+		/// </summary>
+		public Type CurrentStateType
+		{
+			get { return _stateMachineController.CurrentState.GetType(); }
+		}
+
+		#endregion
+		
 		#region Protected and private fields
 
 		/// <summary>
@@ -46,10 +59,10 @@ namespace N_RPG.N_StateMachines.N_Entity
 			Player player = FindObjectOfType<Player>();
 			_stateMachineController.AddStateTransition(entityIdle, 
 			                                           entityChasePlayer, 
-			                                           () => Vector3.Distance(_navMeshAgent.transform.position, player.transform.position) < 5);
+			                                           () => FlatDistance(_navMeshAgent.transform.position, player.transform.position) < 5);
 			_stateMachineController.AddStateTransition(entityChasePlayer, 
 			                                           entityAttack, 
-			                                           () => Vector3.Distance(_navMeshAgent.transform.position, player.transform.position) < 2);
+			                                           () => FlatDistance(_navMeshAgent.transform.position, player.transform.position) < 2);
 		
 			_stateMachineController.ChangeState(entityIdle);
 		}
@@ -60,6 +73,17 @@ namespace N_RPG.N_StateMachines.N_Entity
 		private void Update()
 		{
 			_stateMachineController.Tick();
+		}
+
+		/// <summary>
+		///   Get distance between two points ('y' axis is ignored).
+		/// </summary>
+		/// <param name="source">Source point</param>
+		/// <param name="target">Target point</param>
+		/// <returns>Distance between two points ('y' axis is ignored).</returns>
+		private float FlatDistance(Vector3 source, Vector3 target)
+		{
+			return Vector3.Distance(new Vector3(source.x, 0.0F, source.z), new Vector3(target.x, 0.0F, target.z));
 		}
 
 		#endregion
