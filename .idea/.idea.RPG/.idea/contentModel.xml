@@ -49,6 +49,7 @@
           <e p="StateMachines" t="Include">
             <e p="Data" t="Include">
               <e p="IState.cs" t="Include" />
+              <e p="StateTransition.cs" t="Include" />
             </e>
             <e p="Entity" t="Include">
               <e p="Data" t="Include">

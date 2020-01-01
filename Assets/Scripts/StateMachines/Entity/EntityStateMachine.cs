@@ -1,3 +1,4 @@
+using N_RPG.N_Player;
 using N_RPG.N_StateMachines.N_Entity.N_Data;
 using N_RPG.N_StateMachines.N_Tools;
 using UnityEngine;
@@ -41,6 +42,14 @@ namespace N_RPG.N_StateMachines.N_Entity
 			_stateMachineController.Add(entityIdle);
 			_stateMachineController.Add(entityChasePlayer);
 			_stateMachineController.Add(entityAttack);
+
+			Player player = FindObjectOfType<Player>();
+			_stateMachineController.AddStateTransition(entityIdle, 
+			                                           entityChasePlayer, 
+			                                           () => Vector3.Distance(_navMeshAgent.transform.position, player.transform.position) < 5);
+			_stateMachineController.AddStateTransition(entityChasePlayer, 
+			                                           entityAttack, 
+			                                           () => Vector3.Distance(_navMeshAgent.transform.position, player.transform.position) < 2);
 		
 			_stateMachineController.ChangeState(entityIdle);
 		}
