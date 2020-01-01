@@ -10,17 +10,21 @@ namespace N_RPG.N_StateMachines.N_Tools
 	/// </summary>
 	public class StateMachineController
 	{
+		#region Public fields
+
+		/// <summary>
+		///   Current state.
+		/// </summary>
+		public IState CurrentState { get; private set; }
+		
+		#endregion
+		
 		#region Protected and private fields
 
 		/// <summary>
 		///   Collection of all available states.
 		/// </summary>
 		private readonly List<IState> _states = new List<IState>();
-
-		/// <summary>
-		///   Current state.
-		/// </summary>
-		private IState _currentState;
 		
 		/// <summary>
 		///   Collection of all available transitions between states.
@@ -54,14 +58,14 @@ namespace N_RPG.N_StateMachines.N_Tools
 		/// <param name="newState">New state of state machine</param>
 		public void ChangeState(IState newState)
 		{
-			if(_currentState == newState)
+			if(CurrentState == newState)
 			{
 				return;
 			}
 
-			_currentState?.OnExit();
-			_currentState = newState;
-			_currentState.OnEnter();
+			CurrentState?.OnExit();
+			CurrentState = newState;
+			CurrentState.OnEnter();
 
 			Debug.Log($"Changed state to [{newState}]");
 		}
@@ -73,7 +77,7 @@ namespace N_RPG.N_StateMachines.N_Tools
 		{
 			TryChangeState();
 
-			_currentState.Tick();
+			CurrentState.Tick();
 		}
 
 		/// <summary>
@@ -114,12 +118,12 @@ namespace N_RPG.N_StateMachines.N_Tools
 		/// <returns>State to transit to</returns>
 		private StateTransition GetStateTransition()
 		{
-			if((_currentState == null) || (!_statesTransitions.ContainsKey(_currentState)))
+			if((CurrentState == null) || (!_statesTransitions.ContainsKey(CurrentState)))
 			{
 				return null;
 			}
 			
-			foreach(StateTransition stateTransition in _statesTransitions[_currentState])
+			foreach(StateTransition stateTransition in _statesTransitions[CurrentState])
 			{
 				if(stateTransition.Condition())
 				{

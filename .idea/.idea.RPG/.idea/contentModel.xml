@@ -77,7 +77,7 @@
         <e p="Tests" t="Include">
           <e p="EditMode" t="Include">
             <e p="EditModeTests.asmdef" t="Include" />
-            <e p="list_tests.cs" t="Include" />
+            <e p="state_machine_controller.cs" t="Include" />
           </e>
           <e p="PlayMode" t="Include">
             <e p="a_moving_cube.cs" t="Include" />
