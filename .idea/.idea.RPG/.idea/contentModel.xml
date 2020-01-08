@@ -55,6 +55,7 @@
               <e p="Data" t="Include">
                 <e p="EntityAttack.cs" t="Include" />
                 <e p="EntityChasePlayer.cs" t="Include" />
+                <e p="EntityDead.cs" t="Include" />
                 <e p="EntityIdle.cs" t="Include" />
               </e>
               <e p="EntityStateMachine.cs" t="Include" />

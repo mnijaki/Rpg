@@ -32,25 +32,17 @@ namespace N_RPG.N_StateMachines.N_Tools
 		///   Each state can have more than one state it can go to (if given condition is met then appropriate state is chosen).    
 		/// </summary>
 		private readonly Dictionary<IState,List<StateTransition>> _statesTransitions = new Dictionary<IState, List<StateTransition>>();
+		
+		/// <summary>
+		///   Collection of all available transitions from any state to new state.
+		///   <para></para>
+		///   Transition from this collection can only be used if associated condition is met.
+		/// </summary>
+		private readonly List<StateTransition> _anyStateTransitions = new List<StateTransition>();
 
 		#endregion
 
 		#region Public methods
-
-		/// <summary>
-		///   Add state to collection of available states.
-		/// </summary>
-		/// <param name="state">State to add to collection of available states</param>
-		public void Add(IState state)
-		{
-			if(_states.Contains(state))
-			{
-				Debug.Log($"State machine already contains state [{state}]");
-				return;
-			}
-			
-			_states.Add(state);
-		}
 
 		/// <summary>
 		///   Change state.
@@ -81,7 +73,22 @@ namespace N_RPG.N_StateMachines.N_Tools
 		}
 
 		/// <summary>
-		///   Constructor.
+		///   Add state to collection of available states.
+		/// </summary>
+		/// <param name="state">State to add to collection of available states</param>
+		public void Add(IState state)
+		{
+			if(_states.Contains(state))
+			{
+				Debug.Log($"State machine already contains state [{state}]");
+				return;
+			}
+			
+			_states.Add(state);
+		}
+		
+		/// <summary>
+		///   Add transition between two states.
 		/// </summary>
 		/// <param name="oldState">Old state (state that we are transitioning from)</param>
 		/// <param name="newState">New state (state that we are transitioning to)</param>
@@ -94,6 +101,16 @@ namespace N_RPG.N_StateMachines.N_Tools
 			}
 			
 			_statesTransitions[oldState].Add(new StateTransition(oldState, newState, condition));
+		}
+		
+		/// <summary>
+		///   Add transition from any state.
+		/// </summary>
+		/// <param name="newState">New state (state that we are transitioning to)</param>
+		/// <param name="condition">Condition that must be met to make transition to new state</param>
+		public void AddAnyStateTransition(IState newState, Func<bool> condition)
+		{
+			_anyStateTransitions.Add(new StateTransition(null, newState, condition));
 		}
 
 		#endregion
@@ -118,6 +135,14 @@ namespace N_RPG.N_StateMachines.N_Tools
 		/// <returns>State to transit to</returns>
 		private StateTransition GetStateTransition()
 		{
+			foreach(StateTransition stateTransition in _anyStateTransitions)
+			{
+				if(stateTransition.Condition())
+				{
+					return stateTransition;
+				}
+			}
+			
 			if((CurrentState == null) || (!_statesTransitions.ContainsKey(CurrentState)))
 			{
 				return null;

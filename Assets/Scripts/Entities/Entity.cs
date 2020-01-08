@@ -23,6 +23,14 @@ namespace N_RPG.N_Entity
 		///   Entity health.
 		/// </summary>
 		public int Health { get; private set; }
+		
+		/// <summary>
+		///   Flag if entity is dead.
+		/// </summary>
+		public bool IsDead
+		{
+			get { return Health <= 0; }
+		}
 
 		#endregion
 
@@ -84,6 +92,16 @@ namespace N_RPG.N_Entity
 		private void HandleNonLethalDamage()
 		{
 			Debug.Log($"Entity [{gameObject.name}] got damaged");
+		}
+
+		/// <summary>
+		///   MN:TO_DO: remove after testing is done.
+		///   Kill entity (only for debug purposes).
+		/// </summary>
+		[ContextMenu("TakeLethalDamage")]
+		private void TakeLethalDamage()
+		{
+			TakeDamage(Health);
 		}
 
 		#endregion

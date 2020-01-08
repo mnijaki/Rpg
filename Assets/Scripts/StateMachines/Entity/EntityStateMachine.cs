@@ -1,4 +1,5 @@
 using System;
+using N_RPG.N_Entity;
 using N_RPG.N_Player;
 using N_RPG.N_StateMachines.N_Entity.N_Data;
 using N_RPG.N_StateMachines.N_Tools;
@@ -35,6 +36,11 @@ namespace N_RPG.N_StateMachines.N_Entity
 		///   NavMeshAgent used for navigation of entity.
 		/// </summary>
 		private NavMeshAgent _navMeshAgent;
+		
+		/// <summary>
+		///   Entity that is being processed by entity state machine.
+		/// </summary>
+		private Entity _entity;
 
 		#endregion
 	
@@ -47,14 +53,18 @@ namespace N_RPG.N_StateMachines.N_Entity
 		{
 			_stateMachineController = new StateMachineController();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
+			_entity = GetComponent<Entity>();
 		
 			EntityIdle entityIdle = new EntityIdle();
 			EntityChasePlayer entityChasePlayer = new EntityChasePlayer(_navMeshAgent);
 			EntityAttack entityAttack = new EntityAttack();
+			EntityDead entityDead = new EntityDead();
 		
 			_stateMachineController.Add(entityIdle);
 			_stateMachineController.Add(entityChasePlayer);
 			_stateMachineController.Add(entityAttack);
+			
+			_stateMachineController.AddAnyStateTransition(entityDead, () => _entity.IsDead);
 
 			Player player = FindObjectOfType<Player>();
 			_stateMachineController.AddStateTransition(entityIdle, 
@@ -81,7 +91,7 @@ namespace N_RPG.N_StateMachines.N_Entity
 		/// <param name="source">Source point</param>
 		/// <param name="target">Target point</param>
 		/// <returns>Distance between two points ('y' axis is ignored).</returns>
-		private float FlatDistance(Vector3 source, Vector3 target)
+		private static float FlatDistance(Vector3 source, Vector3 target)
 		{
 			return Vector3.Distance(new Vector3(source.x, 0.0F, source.z), new Vector3(target.x, 0.0F, target.z));
 		}

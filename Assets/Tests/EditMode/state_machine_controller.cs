@@ -95,5 +95,24 @@ namespace N_Tests.N_EditMode
 			stateMachineController.Tick();
 			Assert.AreSame(firstState, stateMachineController.CurrentState);
 		}
+		
+		[Test]
+		public void transition_from_any_state_switch_state_when_condition_is_met()
+		{
+			StateMachineController stateMachineController = new StateMachineController();
+			IState firstState = Substitute.For<IState>();
+			stateMachineController.Add(firstState);
+			IState secondState = Substitute.For<IState>();
+			stateMachineController.Add(secondState);
+
+			bool ShouldTransitionToState() => true;
+			stateMachineController.AddAnyStateTransition(secondState, ShouldTransitionToState);
+			
+			stateMachineController.ChangeState(firstState);
+			Assert.AreSame(firstState, stateMachineController.CurrentState);
+			
+			stateMachineController.Tick();
+			Assert.AreSame(secondState, stateMachineController.CurrentState);
+		}
 	}
 }
