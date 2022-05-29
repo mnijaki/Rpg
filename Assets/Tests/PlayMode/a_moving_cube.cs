@@ -8,7 +8,7 @@ namespace N_Tests.N_PlayMode.N_example_tests
 	public class a_moving_cube
 	{
 		// A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-		// `yield return null;` to skip a frame.
+		// "yield return null;" to skip a frame.
 		// To see how unity test work, on MonoBehaviour switch to 'scene' tab during test.
 		[UnityTest]
 		public IEnumerator object_moving_forward_changes_position()
